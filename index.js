@@ -78,6 +78,8 @@ function App() {
   return (
     <div className="bg-info min-vh-100 text-white">
       <div className="text-center">
+        <br />
+        <br />
         <h2>Drum Machine</h2>
         {audioClips.map((clip) => (
           <Pad

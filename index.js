@@ -58,6 +58,19 @@ const audioClips = [
 function App() {
   const [volume, setVolume] = React.useState(1);
   const [recording, setRecording] = React.useState('');
+
+  const playRecording = () => {
+    let index = 0;
+    let recordArray = recording.split(' ');
+    const interval = setInterval(() => {
+      const audioTag = document.getElementById(recordArray[index]);
+      audioTag.volume = volume;
+      audioTag.currentTime = 0;
+      audioTag.play();
+      index++;
+    }, 300);
+    setTimeout(() => clearInterval(interval), 300 * recordArray.length - 1);
+  };
   return (
     <div className="bg-info min-vh-100 text-white">
       <div className="text-center">
@@ -84,8 +97,12 @@ function App() {
         <h3>{recording}</h3>
         {recording && (
           <>
-            <button className="btn btn-success">play</button>
-            <button className="btn btn-danger">clear</button>
+            <button onClick={playRecording} className="btn btn-success">
+              play
+            </button>
+            <button onClick={() => setRecording('')} className="btn btn-danger">
+              clear
+            </button>
           </>
         )}
       </div>

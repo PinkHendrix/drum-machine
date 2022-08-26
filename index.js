@@ -58,6 +58,7 @@ const audioClips = [
 function App() {
   const [volume, setVolume] = React.useState(1);
   const [recording, setRecording] = React.useState('');
+  const [speed, setSpeed] = React.useState(0.5);
 
   const playRecording = () => {
     let index = 0;
@@ -68,8 +69,11 @@ function App() {
       audioTag.currentTime = 0;
       audioTag.play();
       index++;
-    }, 300);
-    setTimeout(() => clearInterval(interval), 300 * recordArray.length - 1);
+    }, speed * 600);
+    setTimeout(
+      () => clearInterval(interval),
+      600 * speed * recordArray.length - 1
+    );
   };
   return (
     <div className="bg-info min-vh-100 text-white">
@@ -103,6 +107,17 @@ function App() {
             <button onClick={() => setRecording('')} className="btn btn-danger">
               clear
             </button>
+            <br />
+            <h4>Speed</h4>
+            <input
+              type="range"
+              step="0.01"
+              onChange={(e) => setSpeed(e.target.value)}
+              value={speed}
+              max="1.2"
+              min="0.1"
+              className="w-50"
+            />
           </>
         )}
       </div>

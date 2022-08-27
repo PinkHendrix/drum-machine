@@ -56,7 +56,7 @@ const audioClips = [
 ];
 
 function App() {
-  const [volume, setVolume] = React.useState(1);
+  const [volume, setVolume] = React.useState(0.7);
   const [recording, setRecording] = React.useState('');
   const [speed, setSpeed] = React.useState(0.5);
 
@@ -77,9 +77,7 @@ function App() {
   };
   return (
     <div className="bg-info min-vh-100 text-white">
-      <div className="text-center">
-        <br />
-        <br />
+      <div className="text-center p-4">
         <h2>Drum Machine</h2>
         {audioClips.map((clip) => (
           <Pad
